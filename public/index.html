@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hammam Ticket Booking</title>
+  <link rel="stylesheet" href="../src/styles/main.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+  <div class="container" id="main-content" style="display:none;">
+    <header>
+      <h1>Hammam Oasis</h1>
+    </header>
+    <section class="service-cards">
+      <a href="turc.html" class="service-card" style="text-decoration:none;">
+        <h2>TURC</h2>
+      </a>
+      <a href="normal.html" class="service-card" style="text-decoration:none;">
+        <h2>NORMAL</h2>
+      </a>
+      <a href="produits.html" class="service-card" style="text-decoration:none;">
+        <h2>PRODUITS</h2>
+      </a>
+    </section>
+    <div class="rapport-btns-row">
+      <a href="hammam-rapport.html" class="rapport-btn rapport-btn-hammam">HAMMAM RAPPORT</a>
+      <a href="produits-rapport.html" class="rapport-btn rapport-btn-produits">PRODUITS RAPPORT</a>
+    </div>
+  </div>
+  <button onclick="localStorage.removeItem('access_granted'); window.location.href='code-entry.html';">
+    Logout
+  </button>
+  <script>
+  if (localStorage.getItem('access_granted') !== 'yes') {
+    window.location.href = "code-entry.html";
+  } else {
+    document.getElementById('main-content').style.display = 'block';
+  }
+  </script>
+</body>
+</html>

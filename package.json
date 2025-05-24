@@ -1,0 +1,29 @@
+{
+  "name": "hammam-website",
+  "version": "1.0.0",
+  "description": "A website for purchasing entry tickets to a hammam.",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "build": "webpack --mode production",
+    "test": "jest"
+  },
+  "keywords": [
+    "hammam",
+    "tickets",
+    "spa",
+    "wellness"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
+  "devDependencies": {
+    "webpack": "^5.38.1",
+    "webpack-cli": "^4.7.0",
+    "jest": "^26.6.0"
+  }
+}

@@ -1,0 +1,327 @@
+.turc-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  margin: 0;                   /* Remove top margin so cards start at the top */
+}
+
+.turc-card {
+  background: #D99873;
+  color: #000000;
+  border-radius: 14px;
+  box-shadow: 0 4px 18px rgba(44,62,80,0.10);
+  text-align: center;
+  padding: 48px 18px;      /* Increased padding */
+  font-size: 20px;        /* Bigger text */
+  font-weight: bold;
+  letter-spacing: 1px;
+  transition: transform 0.18s, box-shadow 0.18s;
+  min-width: 140px;        /* Wider card */
+  min-height: 50px;       /* Taller card */
+}
+
+.turc-card:hover {
+  transform: translateY(-6px) scale(1.04);
+  box-shadow: 0 8px 24px rgba(44, 62, 80, 0.16);
+  background: #b97a5a;
+}
+
+#selected-cards {
+  margin-bottom: 32px;
+  min-height: 70px;
+  max-height: 500px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  font-family: Arial, sans-serif;
+  font-size: 1.5em;
+  padding: 0;                  /* Remove vertical padding */
+  background: #868686;
+  border-radius: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+
+#selected-cards::-webkit-scrollbar {
+  width: 12px;
+  background: #868686; /* Scrollbar track background */
+  border-radius: 10px;
+}
+
+#selected-cards::-webkit-scrollbar-thumb {
+  background: #868686; /* Scrollbar thumb color */
+  border-radius: 10px;
+}
+
+/* For Firefox */
+#selected-cards {
+  scrollbar-color: #868686 #868686;
+  scrollbar-width: thin;
+}
+
+.selected-card {
+  background: #fff7f0;
+  color: #222;
+  border-radius: 10px;
+  padding: 18px 24px;
+  font-size: 1em;
+  font-weight: normal;
+  box-shadow: 0 2px 8px rgba(44,62,80,0.10);
+  margin-bottom: 0;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  width: 100%;                /* Make each ticket fill the ticket list width */
+  box-sizing: border-box;
+}
+
+.selected-card.to-remove {
+  background: #ffe5e5 !important;
+  border: 2px solid #e11d48;
+}
+
+.selected-card .trash-icon {
+  color: #e11d48;
+  margin-left: 24px;
+  cursor: pointer;
+  font-size: 1.2em;
+  transition: color 0.2s;
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+.selected-card .trash-icon:hover {
+  color: #b30021;
+}
+
+.ticket-name {
+  min-width: 170px;
+  display: inline-block;
+}
+
+.ticket-count {
+  width: 24px;
+  text-align: center;
+  display: inline-block;
+}
+
+.ticket-price {
+  width: 50px;
+  text-align: right;
+  display: inline-block;
+}
+
+.bottom-actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 40px;
+  gap: 18px;
+}
+
+.back-link {
+  text-decoration: none;
+  color: #fff;
+  background: #3b82f6;
+  font-weight: bold;
+  font-size: 1.3em;
+  padding: 14px 38px;
+  border-radius: 8px;
+  margin-right: auto;
+  transition: background 0.2s;
+  box-shadow: 0 2px 8px rgba(44,62,80,0.10);
+  letter-spacing: 1px;
+}
+.back-link:hover {
+  background: #2563eb;
+}
+
+.bottom-actions button {
+  font-size: 1.2em;
+  padding: 14px 32px;
+  border-radius: 8px;
+  border: none;
+  background: #D99873;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 8px rgba(44,62,80,0.10);
+  letter-spacing: 1px;
+}
+.bottom-actions button:hover {
+  background: #b97a5a;
+}
+
+.turc-columns {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between; /* Even spacing between columns */
+  align-items: stretch;
+  gap: 50px;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.turc-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  flex: 1 1 0;
+}
+
+/* Optionally, add some padding to each column for extra breathing room */
+.turc-col-tickets,
+.turc-col-cards,
+.turc-col-actions {
+  padding: 0 12px;
+}
+
+.turc-col-tickets {
+  flex: 1 1 0;
+  max-width: 600px;
+  min-width: 500px;
+  align-items: flex-start;      /* Align content to the top/left */
+  justify-content: flex-start;
+  display: flex;
+  flex-direction: column;
+  margin-left: -150px;
+}
+
+.turc-col-cards {
+  flex: 1 1 0;
+  min-width: 300px;
+  justify-content: flex-start;
+  align-items: flex-start;      /* Align content to the top/left */
+  display: flex;            /* Make sure it's a flex container */
+  margin-left: -25px;
+}
+
+
+.turc-col-actions {
+  flex: 1 1 0;
+  min-width: 80px;
+  align-items: flex-end;
+  justify-content: flex-start;
+  margin-left: 300px;
+}
+
+.turc-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: flex-end;
+  margin-top: 40px;
+}
+
+.turc-actions .back-link,
+.turc-actions .action-btn {
+  width: 160px;
+  font-size: 1.1em;
+  padding: 16px 0;
+  margin: 0;
+  text-align: center;
+}
+
+.turc-actions .action-btn {
+  border-radius: 8px;
+  border: none;
+  background: #e11d48;   /* Red background */
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 8px rgba(44,62,80,0.10);
+  letter-spacing: 1px;
+}
+
+.turc-actions .action-btn:hover {
+  background: #b30021;   /* Darker red on hover */
+}
+
+.turc-actions .ticket-btn {
+  width: 160px;
+  height: 160px;
+  font-size: 1.5em;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+  border-radius: 12px;
+  border: none;
+  background: #00cb1f;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 8px rgba(44,62,80,0.10);
+  letter-spacing: 1px;
+  margin-top: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.turc-actions .ticket-btn:hover {
+  background: #0f7711;
+}
+
+@media (max-width: 1100px) {
+  .turc-columns {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 24px;
+  }
+  .turc-col-actions, .turc-col-tickets, .turc-col-cards {
+    align-items: center;
+    justify-content: center;
+    min-width: 0;
+    max-width: 100%;
+  }
+  .turc-actions {
+    flex-direction: row;
+    gap: 16px;
+    margin-top: 24px;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 900px) {
+  .turc-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 600px) {
+  .turc-grid { grid-template-columns: 1fr; }
+  .bottom-actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+  }
+  .back-link {
+    margin-right: 0;
+    margin-bottom: 12px;
+  }
+}
+
+header {
+  color: rgb(0, 0, 0);
+  padding: 15px;
+  text-align: center;
+  font-size: 40px;
+  margin-bottom: 40px; /* Add more space below the title */
+}
+
+#total-price {
+  font-size: 2em !important;
+  background-color: #868686 !important;
+  margin-top: 24px !important;
+  text-align: center !important;
+  color: #000000 !important;
+  border-radius: 8px !important;
+  border: 2px solid #000000;
+  padding: 18px 18px !important;
+  letter-spacing: 2px !important;
+  box-shadow: 0 4px 18px rgba(44,62,80,0.18) !important;
+}

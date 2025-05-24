@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Enter Code</title>
+  <link rel="stylesheet" href="../src/styles/main.css">
+</head>
+<body>
+  <div class="container" style="display:flex; flex-direction:column; align-items:center; justify-content:center; min-height:100vh;">
+    <h1>Enter Access Code</h1>
+    <form id="code-form" style="display:flex; flex-direction:column; gap:18px; align-items:center;">
+      <input type="password" id="access-code" placeholder="Enter code" style="font-size:1.3em; padding:12px 24px; border-radius:8px; border:1px solid #ccc;">
+      <button type="submit" style="font-size:1.2em; padding:12px 32px; border-radius:8px; background:#3b82f6; color:#fff; border:none; font-weight:bold; cursor:pointer;">Enter</button>
+      <div id="code-error" style="color:#e11d48; font-weight:bold; display:none;">Invalid code. Try again.</div>
+    </form>
+  </div>
+  <script>
+    document.getElementById('code-form').onsubmit = function(e) {
+      e.preventDefault();
+      const code = document.getElementById('access-code').value;
+      // Replace '2002' with your real code
+      if (code === '2002') {
+        localStorage.setItem('access_granted', 'yes'); // Set flag
+        window.location.href = "index.html";           // Redirect to index page
+      } else {
+        document.getElementById('code-error').style.display = 'block';
+      }
+    };
+  </script>
+</body>
+</html>

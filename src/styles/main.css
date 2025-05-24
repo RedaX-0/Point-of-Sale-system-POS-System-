@@ -1,0 +1,215 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #868686;
+}
+
+body, html {
+    height: 100%;
+}
+
+header {
+    color: rgb(0, 0, 0);
+    padding: 15px;
+    text-align: center;
+    font-size: 40px;
+    margin-bottom: 0;
+}
+
+h1 {
+    margin: 0;
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.ticket-purchase {
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.service-list {
+    margin-top: 20px;
+}
+
+.service-item {
+    background: #e7e7e7;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+.access-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: url('file:///C:/Users/reda/Desktop/vibe%20coding%20test/hammam-website/hammam%20bg.jpg') center center/cover no-repeat, rgba(255,255,255,0.97);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.access-box {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(44,62,80,0.12);
+  padding: 32px 28px;
+  text-align: center;
+  max-width: 320px;
+  width: 100%;
+}
+
+.access-box input[type="password"] {
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  font-size: 1em;
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.access-box button {
+  background: #3b82f6;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 24px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.access-box button:hover {
+  background: #2563eb;
+}
+
+.access-error {
+  color: #e11d48;
+  margin-bottom: 10px;
+  font-size: 0.98em;
+  min-height: 20px;
+}
+
+.service-cards {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    margin-top: 60px;
+    margin-bottom: 60px;
+}
+
+.service-card {
+  background: #D99873;
+  border-radius: 18px;
+  box-shadow: 0 6px 32px rgba(44, 62, 80, 0.18);
+  text-align: center;
+  width: 250px;         /* Fixed width */
+  height: 500px;        /* Taller height */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 2em;
+  font-weight: bold;
+  color: #fff;
+  position: relative;
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+  overflow: hidden;
+  padding: 0 10px;             /* Add horizontal padding for text */
+  word-break: break-word;      /* Ensures long words wrap */
+  white-space: normal;         /* Allows wrapping */
+}
+
+.service-card::before {
+  content: "";
+  position: absolute;
+  top: -30px;
+  right: -30px;
+  width: 80px;
+  height: 80px;
+  background: rgba(255,255,255,0.10);
+  border-radius: 50%;
+  z-index: 0;
+}
+
+.service-card h2 {
+  position: relative;
+  z-index: 1;
+  font-size: 35px;
+  letter-spacing: 2px;
+  margin: 0;
+  margin-bottom: 10px;
+  text-shadow: 0 2px 8px rgba(44,62,80,0.10);
+}
+
+.service-card:hover {
+  transform: translateY(-10px) scale(1.06) rotate(-1deg);
+  box-shadow: 0 12px 36px rgba(44, 62, 80, 0.22);
+  background: #b97a5a;
+}
+
+.rapport-btn {
+  display: inline-block;
+  background: #3b82f6;
+  color: #fff;
+  font-size: 1.2em;
+  font-weight: bold;
+  padding: 18px 36px;
+  border-radius: 10px;
+  text-decoration: none;
+  margin: 0 8px;
+  transition: background 0.2s;
+  box-shadow: 0 2px 8px rgba(44,62,80,0.10);
+  letter-spacing: 1px;
+}
+
+.rapport-btn:hover {
+  background: #2563eb;
+}
+
+.rapport-btns-row {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  margin-top: 10px;      /* Move buttons up */
+  margin-bottom: 48px;
+}
+
+.rapport-btn-hammam {
+  width: 520px;          /* 2 x 250px card width + 2*10px padding */
+  max-width: 100%;
+  text-align: center;
+}
+
+.rapport-btn-produits {
+  width: 250px;          /* 1 card width */
+  max-width: 100%;
+  text-align: center;
+}

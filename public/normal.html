@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>NORMAL Ticket</title>
+  <link rel="stylesheet" href="../src/styles/main.css">
+  <link rel="stylesheet" href="../src/styles/turc.css">
+  <script src="https://kit.fontawesome.com/ea8f2c8b0b.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>NORMAL Ticket</h1>
+    </header>
+    <main>
+      <div class="turc-columns">
+        <!-- Column 1: Tickets -->
+        <div class="turc-col turc-col-tickets">
+          <div id="selected-cards"></div>
+          <div id="total-price" style="font-size:1.3em; font-weight:bold; margin-top:18px; text-align:center;">Total: 0dh</div>
+        </div>
+        <!-- Column 2: Cards -->
+        <div class="turc-col turc-col-cards">
+          <div class="turc-grid">
+            <div class="turc-card">HOMME</div>
+            <div class="turc-card">FEMME</div>
+            <div class="turc-card">GARÇONS</div>
+            <div class="turc-card">FILLES</div>
+          </div>
+        </div>
+        <!-- Column 3: Actions -->
+        <div class="turc-col turc-col-actions">
+          <div class="turc-actions">
+            <a href="index.html" class="back-link" id="back-link">Back</a>
+            <button id="remove-selected" class="action-btn">REMOVE</button>
+            <button id="remove-all" class="action-btn">REMOVE ALL</button>
+            <button class="ticket-btn">TICKET</button>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+  <div id="ticket-popup" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.45); z-index:9999; align-items:center; justify-content:center;">
+    <div id="ticket-content" style="background:#fff; border-radius:16px; padding:32px 24px; min-width:320px; max-width:90vw; box-shadow:0 8px 32px rgba(44,62,80,0.18); position:relative;">
+      <button id="close-ticket" style="position:absolute; top:12px; right:18px; background:none; border:none; font-size:1.5em; cursor:pointer;">&times;</button>
+      <!-- Ticket details will be injected here -->
+    </div>
+  </div>
+  <script>
+    let selectedForRemove = null;
+
+    // Highlight selected card for removal
+    document.getElementById('selected-cards').addEventListener('click', function(e) {
+      if (e.target.classList.contains('selected-card') || e.target.closest('.selected-card')) {
+        const card = e.target.classList.contains('selected-card') ? e.target : e.target.closest('.selected-card');
+        card.classList.toggle('to-remove');
+      }
+    });
+
+    // REMOVE: removes all selected tickets
+    document.getElementById('remove-selected').onclick = function() {
+      document.querySelectorAll('#selected-cards .selected-card.to-remove').forEach(card => card.remove());
+      updateTotal();
+    };
+
+    // REMOVE ALL: removes all selected cards
+    document.getElementById('remove-all').onclick = function() {
+      document.getElementById('selected-cards').innerHTML = '';
+      selectedForRemove = null;
+      updateTotal();
+    };
+
+    // Add ticket logic
+    document.querySelectorAll('.turc-card').forEach(card => {
+      card.addEventListener('click', function() {
+        const selectedContainer = document.getElementById('selected-cards');
+        const name = this.textContent;
+        let selected = [...selectedContainer.children].find(child => child.dataset.name === name);
+
+        // Set price based on card name
+        let price = 12;
+        if (name.includes("GARÇONS") || name.includes("FILLES")) {
+          price = 6;
+        }
+
+        if (selected) {
+          const countSpan = selected.querySelector('.ticket-count');
+          const priceSpan = selected.querySelector('.ticket-price');
+          let count = parseInt(countSpan.textContent) + 1;
+          countSpan.textContent = count;
+          priceSpan.textContent = (count * price) + "dh";
+          updateTotal();
+        } else {
+          selected = document.createElement('div');
+          selected.className = 'selected-card';
+          selected.dataset.name = name;
+          selected.innerHTML = `
+            <span class="ticket-name">${name}</span>
+            <span class="ticket-count">1</span>
+            <span class="ticket-price">${price}dh</span>
+            <i class="fas fa-trash-alt trash-icon"></i>
+          `;
+          selected.querySelector('.trash-icon').onclick = function() {
+            selected.remove();
+            updateTotal();
+          };
+          selectedContainer.appendChild(selected);
+          updateTotal();
+        }
+      });
+    });
+
+    // Back link always goes to index.html
+    document.getElementById('back-link').onclick = function(e) {
+      e.preventDefault();
+      window.location.href = "index.html";
+    };
+
+    function updateTotal() {
+      let total = 0;
+      document.querySelectorAll('#selected-cards .selected-card').forEach(card => {
+        const count = parseInt(card.querySelector('.ticket-count').textContent);
+        const name = card.querySelector('.ticket-name').textContent;
+        let price = 12;
+        if (name.includes("GARÇONS") || name.includes("FILLES")) {
+          price = 6;
+        }
+        total += count * price;
+      });
+      document.getElementById('total-price').textContent = `Total: ${total}dh`;
+    }
+    updateTotal();
+
+    let ticketCounter = 1;
+
+    document.querySelector('.ticket-btn').onclick = function() {
+      // Gather ticket data
+      const hammamName = "HAMMAM OASIS";
+      const ticketNumber = ticketCounter++;
+      const now = new Date();
+      const day = String(now.getDate()).padStart(2, '0');
+      const month = String(now.getMonth() + 1).padStart(2, '0');
+      const year = now.getFullYear();
+      const dateStr = `${day}/${month}/${year}`;
+      const hours = String(now.getHours()).padStart(2, '0');
+      const minutes = String(now.getMinutes()).padStart(2, '0');
+      const timeStr = `${hours}:${minutes}`;
+      let total = 0;
+      let services = "";
+
+      document.querySelectorAll('#selected-cards .selected-card').forEach(card => {
+        const name = card.querySelector('.ticket-name').textContent;
+        const count = card.querySelector('.ticket-count').textContent;
+        let price = 12;
+        if (name.includes("GARÇONS") || name.includes("FILLES")) {
+          price = 6;
+        }
+        services += `<tr>
+          <td style="padding:6px 18px;">${name}</td>
+          <td style="padding:6px 18px; text-align:center;">${count}</td>
+          <td style="padding:6px 18px; text-align:right;">${count * price}dh</td>
+        </tr>`;
+        total += parseInt(count) * price;
+      });
+
+      if (!services) {
+        alert("No tickets selected!");
+        return;
+      }
+
+      // Ticket HTML
+      const ticketHTML = `
+        <div style="text-align:center; margin-bottom:18px;">
+          <h2 style="margin:0 0 8px 0;">${hammamName}</h2>
+          <div style="font-size:1.1em;">Ticket #${ticketNumber}</div>
+          <div style="font-size:1em; color:#444;">${dateStr} ${timeStr}</div>
+        </div>
+        <table style="width:100%; border-collapse:collapse; margin-bottom:18px;">
+          <thead>
+            <tr style="background:#f3f3f3;">
+              <th style="padding:6px 18px;">Service</th>
+              <th style="padding:6px 18px;">Qty</th>
+              <th style="padding:6px 18px; text-align:right;">Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${services}
+          </tbody>
+        </table>
+        <div style="text-align:right; font-size:1.2em; font-weight:bold; margin-top:12px;">
+          Total: ${total}dh
+        </div>
+      `;
+
+      document.getElementById('ticket-content').innerHTML = `
+        ${ticketHTML}
+        <button id="print-ticket" style="margin-top:18px; width:100%; padding:12px 0; background:#3b82f6; color:#fff; border:none; border-radius:8px; font-size:1.1em; font-weight:bold; cursor:pointer;">Print</button>
+        <button id="cancel-ticket" style="margin-top:12px; width:100%; padding:12px 0; background:#e11d48; color:#fff; border:none; border-radius:8px; font-size:1.1em; font-weight:bold; cursor:pointer;">Cancel</button>
+      `;
+      document.getElementById('ticket-popup').style.display = "flex";
+
+      // Cancel logic
+      document.getElementById('cancel-ticket').onclick = function() {
+        document.getElementById('ticket-popup').style.display = "none";
+      };
+
+      document.getElementById('print-ticket').onclick = function() {
+        // Print only the ticket content
+        const printContents = document.getElementById('ticket-content').innerHTML;
+        const originalContents = document.body.innerHTML;
+        document.body.innerHTML = `<div style="max-width:400px;margin:40px auto;">${printContents}</div>`;
+        window.print();
+        document.body.innerHTML = originalContents;
+        window.location.reload(); // reload to restore event listeners
+      };
+    };
+  </script>
+</body>
+</html>
