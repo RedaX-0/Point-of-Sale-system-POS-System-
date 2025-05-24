@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Hammam Website
 
 ## Overview
@@ -49,3 +50,7 @@ This will launch the application in your default web browser.
 
 ## License
 This project is licensed under the MIT License.
+=======
+# Point-of-Sale-system-POS-System-
+Point of Sale system (POS System)
+>>>>>>> f00f2828cf9b93a04248953ba8ef9662aa389bae
